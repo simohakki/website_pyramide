@@ -13,6 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Dependencies
+      run: |
+        gem update --system --no-document
+        gem update bundler --no-document
+        bundle install --jobs 4 --retry 3
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \
